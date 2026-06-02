@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METARAJI - Babymetal's Metal Radio</title>
+    <link rel="icon" href="https://i.ibb.co/wFF02zGp/1748924010455.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #141414;
+            color: white;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* HEADER NETFLIX STYLE */
+      .netflix-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 4%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 10%, transparent);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.3s;
+        }
+      .netflix-header.scrolled {
+            background: #141414;
+        }
+      .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+      .netflix-logo {
+            color: #8A2BE2;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px #8A2BE2;
+        }
+      .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+      .nav-links a {
+            color: #e5e5e5;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+      .nav-links a:hover,.nav-links a.active {
+            color: #fff;
+            font-weight: 700;
+        }
+      .live-badge {
+            background: #00cc00;
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* HERO BANNER */
+      .hero {
+            height: 80vh;
+            background: linear-gradient(to bottom, transparent 0%, #141414 100%),
+                        url('https://i.imgur.com/8QmVJ9E.jpg') center/cover;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 4% 80px;
+            position: relative;
+        }
+      .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+      .hero-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+      .hero-subtitle {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #DDA0DD;
+            font-weight: 600;
+        }
+      .hero-desc {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+        }
+      .hero-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+      .hero-badge {
+            background: rgba(138, 43, 226, 0.3);
+            border: 1px solid #8A2BE2;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+      .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+      .btn-play {
+            background: white;
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+      .btn-play:hover {
+            background: rgba(255,255,255,0.75);
+        }
+      .btn-info {
+            background: rgba(109,109,110,0.7);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+      .btn-info:hover {
+            background: rgba(109,109,110,0.4);
+        }
+
+        /* SEASON FILTER */
+      .season-filter {
+            padding: 0 4%;
+            margin: 30px 0 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+      .season-btn {
+            background: rgba(109,109,110,0.3);
+            color: white;
+            border: 2px solid transparent;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+      .season-btn:hover {
+            background: rgba(109,109,110,0.5);
+        }
+      .season-btn.active {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        /* GUEST SECTION */
+      .guests-section {
+            padding: 0 4%;
+            margin-bottom: 40px;
+        }
+      .guests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+      .guest-card {
+            background: #2f2f2f;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+      .guest-card:hover {
+            background: #3f3f3f;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+        }
+      .guest-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2a004a, #8A2BE2);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            border: 3px solid #8A2BE2;
+        }
+      .guest-name {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+      .guest-episodes {
+            font-size: 11px;
+            color: #999;
+        }
+
+        /* MINI PLAYER */
+      .mini-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20,20,20,0.95);
+            backdrop-filter: blur(10px);
+            border: 2px solid #8A2BE2;
+            border-radius: 12px;
+            padding: 15px;
+            width: 320px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
+            z-index: 999;
+            display: none;
+        }
+      .mini-player.active {
+            display: block;
+        }
+      .mini-player-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+      .mini-cover {
+            width: 50px;
+            height: 50px;
+            border-radius: 4px;
+            border: 2px solid #8A2BE2;
+        }
+      .mini-info {
+            flex: 1;
+            overflow: hidden;
+        }
+      .mini-title {
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+      .mini-artist {
+            font-size: 11px;
+            color: #DDA0DD;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+      .mini-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+      .mini-btn {
+            background: #8A2BE2;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+      .mini-btn:hover {
+            background: #9370DB;
+            transform: scale(1.1);
+        }
+
+        /* EPISODES ROW */
+      .row {
+            padding: 0 4%;
+            margin-bottom: 40px;
+        }
+      .row-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+      .row-count {
+            font-size: 14px;
+            color: #999;
+            font-weight: 400;
+        }
+      .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+      .episode-card {
+            background: #2f2f2f;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
+      .episode-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+        }
+      .episode-thumb {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, #2a004a, #8A2BE2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+        }
+      .episode-number {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 900;
+            color: #FFD700;
+        }
+      .episode-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+      .episode-season-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #8A2BE2;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+      .episode-info {
+            padding: 15px;
+        }
+      .episode-name {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+      .episode-meta {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+      .guest-badge {
+            background: rgba(138, 43, 226, 0.3);
+            border: 1px solid #8A2BE2;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            color: #DDA0DD;
+        }
+      .episode-desc {
+            font-size: 13px;
+            color: #d2d2d2;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+      .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 160px;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+      .episode-card:hover.play-overlay {
+            opacity: 1;
+        }
+      .play-btn-large {
+            background: white;
+            color: black;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* LIVE RADIO SECTION */
+      .live-section {
+            background: linear-gradient(135deg, #1a0033, #2a004a);
+            padding: 40px 4%;
+            margin: 40px 0;
+            border-top: 3px solid #8A2BE2;
+            border-bottom: 3px solid #8A2BE2;
+        }
+      .live-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+      .live-indicator {
+            width: 12px;
+            height: 12px;
+            background: #00cc00;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(0, 204, 0, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(0, 204, 0, 0); }
+        }
+      .live-title {
+            font-size: 28px;
+            font-weight: 900;
+        }
+      .visualizer {
+            width: 100%;
+            height: 80px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* FOOTER */
+      .footer {
+            padding: 40px 4%;
+            text-align: center;
+            color: #808080;
+            font-size: 13px;
+            border-top: 1px solid #333;
+        }
+
+        @media (max-width: 768px) {
+          .hero-title { font-size: 32px; }
+          .hero-desc { font-size: 14px; }
+          .episodes-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+          .nav-links { display: none; }
+          .mini-player { width: 90%; right: 5%; }
+          .guests-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+        }
+
+        audio { display: none; }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="netflix-header" id="header">
+        <div class="logo-nav">
+            <div class="netflix-logo">METARAJI</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Inicio</a></li>
+                <li><a href="#episodios">Episodios</a></li>
+                <li><a href="#invitados">Invitados</a></li>
+                <li><a href="#live">Radio Live</a></li>
+            </ul>
+        </div>
+        <div class="live-badge">● LIVE</div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">METARAJI</h1>
+            <p class="hero-subtitle">Babymetal's Metal Radio • Tokyo FM</p>
+            <div class="hero-meta">
+                <span class="hero-badge">2025-2026</span>
+                <span class="hero-badge">65 Episodios</span>
+                <span class="hero-badge">Subs Español</span>
+            </div>
+            <p class="hero-desc">Programa de radio oficial de BABYMETAL con SU-METAL, MOAMETAL y MOMOMETAL. Ciencia, metal, entrevistas y charlas relajadas con invitados especiales como Nakano Nobuko. 1 año 3 meses de METARAJI.</p>
+            <div class="hero-buttons">
+                <button class="btn-play" onclick="playRadio()">
+                    ▶ Reproducir Radio
+                </button>
+                <button class="btn-info" onclick="document.getElementById('episodios').scrollIntoView({behavior:'smooth'})">
+                    ℹ️ Ver Episodios
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEASON FILTER -->
+    <div class="season-filter">
+        <button class="season-btn active" onclick="filterSeason('all')">Todas las Temporadas</button>
+        <button class="season-btn" onclick="filterSeason(1)">Temporada 1: 2025</button>
+        <button class="season-btn" onclick="filterSeason(2)">Temporada 2: 2026</button>
+        <button class="season-btn" onclick="filterSeason('final')">Episodio Final</button>
+    </div>
+
+    <!-- GUESTS SECTION -->
+    <section class="guests-section" id="invitados">
+        <h2 class="row-title">Invitados Especiales</h2>
+        <div class="guests-grid">
+            <div class="guest-card" onclick="filterGuest('Nakano Nobuko')">
+                <div class="guest-avatar">🧠</div>
+                <div class="guest-name">Nakano Nobuko</div>
+                <div class="guest-episodes">Niko-Metal-san • #55</div>
+            </div>
+            <div class="guest-card" onclick="filterGuest('Mikio Fujioka')">
+                <div class="guest-avatar">🎸</div>
+                <div class="guest-name">Mikio Fujioka</div>
+                <div class="guest-episodes">Kami Band • #64</div>
+            </div>
+            <div class="guest-card" onclick="filterGuest('Seikima-II')">
+                <div class="guest-avatar">👹</div>
+                <div class="guest-name">Seikima-II</div>
+                <div class="guest-episodes">Tribute • #54</div>
+            </div>
+            <div class="guest-card" onclick="filterGuest('METALLICA')">
+                <div class="guest-avatar">🤘</div>
+                <div class="guest-name">METALLICA</div>
+                <div class="guest-episodes">Influencias • #55</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE RADIO SECTION -->
+    <section class="live-section" id="live">
+        <div class="live-header">
+            <div class="live-indicator"></div>
+            <h2 class="live-title">RADIO 24/7 EN VIVO</h2>
+        </div>
+        <canvas id="visualizer" class="visualizer"></canvas>
+        <div style="text-align: center; margin-top: 20px;">
+            <div id="now-playing" style="font-size: 16px; font-weight: 700; margin-bottom: 5px;">Conectando...</div>
+            <div id="now-artist" style="font-size: 14px; color: #DDA0DD;"></div>
+        </div>
+    </section>
+
+    <!-- EPISODES ROW -->
+    <section class="row" id="episodios">
+        <h2 class="row-title">
+            Episodios de METARAJI
+            <span class="row-count" id="episodeCount">(65 episodios)</span>
+        </h2>
+        <div class="episodes-grid" id="episodesGrid"></div>
+    </section>
+
+    <!-- MINI PLAYER -->
+    <div class="mini-player" id="miniPlayer">
+        <div class="mini-player-header">
+            <img id="miniCover" class="mini-cover" src="https://i.ibb.co/wFF02zGp/1748924010455.png">
+            <div class="mini-info">
+                <div class="mini-title" id="miniTitle">METARAJI Live</div>
+                <div class="mini-artist" id="miniArtist">Tokyo FM</div>
+            </div>
+        </div>
+        <div class="mini-controls">
+            <button class="mini-btn" onclick="togglePlay()">⏯️</button>
+            <button class="mini-btn" onclick="toggleMute()">🔊</button>
+            <button class="mini-btn" onclick="closeMiniPlayer()">✕</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>METARAJI • Babymetal's Metal Radio • Tokyo FM</p>
+        <p style="margin-top: 10px;">Only The Fox God Knows 🧠🤘 | METATOMO Forever</p>
+    </footer>
+
+    <audio id="radio" crossorigin="anonymous">
+        <source src="https://stream.zeno.fm/fvqayaa0k2zuv" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const audio = document.getElementById('radio');
+        const header = document.getElementById('header');
+        const miniPlayer = document.getElementById('miniPlayer');
+        const canvas = document.getElementById('visualizer');
+        const ctx = canvas.getContext('2d');
+
+        // Datos de episodios METARAJI con temporadas e invitados
+        const episodes = [
+            {
+                num: 65,
+                season: 2,
+                title: "EPISODIO FINAL",
+                date: "28 MAR 2026",
+                duration: "28:45",
+                desc: "SU-METAL, MOAMETAL y MOMOMETAL recuerdan 1 año y 3 meses de Metaraji. Despedida emotiva leyendo mensajes de METATOMO de todo el mundo. Hablan del Metaraji Book y Metaraji Fest.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE65",
+                thumb: "🧠",
+                guest: null,
+                seasonName: "Temporada 2"
+            },
+            {
+                num: 64,
+                season: 2,
+                title: "Especial Metal Forth",
+                date: "21 MAR 2026",
+                duration: "26:30",
+                desc: "Invitado especial: Mikio Fujioka. Hablamos del nuevo álbum Metal Forth, proceso creativo, anécdotas del estudio y el futuro de BABYMETAL.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE64",
+                thumb: "🎸",
+                guest: "Mikio Fujioka",
+                seasonName: "Temporada 2"
+            },
+            {
+                num: 63,
+                season: 2,
+                title: "Kitsune Fest Special",
+                date: "14 MAR 2026",
+                duration: "25:15",
+                desc: "Preparación para el METARAJI Fest. Las chicas comparten qué canciones tocarán, recuerdos de giras pasadas y mensajes para los fans que asistirán.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE63",
+                thumb: "🦊",
+                guest: null,
+                seasonName: "Temporada 2"
+            },
+            {
+                num: 62,
+                season: 2,
+                title: "Fan Letters Special",
+                date: "07 MAR 2026",
+                duration: "24:50",
+                desc: "Lectura de cartas de fans internacionales. MOAMETAL llora con mensaje de México. Momentos emotivos y risas con anécdotas de fans.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE62",
+                thumb: "💌",
+                guest: null,
+                seasonName: "Temporada 2"
+            },
+            {
+                num: 55,
+                season: 2,
+                title: "Neurociencia y Metal",
+                date: "17 ENE 2026",
+                duration: "27:20",
+                desc: "Invitada: Nakano Nobuko (Niko-Metal-san), neurocientífica y amante del metal. La conexión entre el metal y el cerebro, Seikima-II, METALLICA y el 'gen metalero'.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE55",
+                thumb: "🧠",
+                guest: "Nakano Nobuko",
+                seasonName: "Temporada 2"
+            },
+            {
+                num: 54,
+                season: 2,
+                title: "Seikima-II Tribute",
+                date: "10 ENE 2026",
+                duration: "25:40",
+                desc: "Especial dedicado a Seikima-II. Influencias en BABYMETAL, anécdotas, covers favoritos y la importancia de Demon Kakka en sus carreras.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE54",
+                thumb: "👹",
+                guest: "Seikima-II",
+                seasonName: "Temporada 2"
+            },
+            {
+                num: 45,
+                season: 1,
+                title: "Metal Galaxy Memories",
+                date: "08 NOV 2025",
+                duration: "26:10",
+                desc: "Recordando la era Metal Galaxy. Historias del tour, backstage, canciones que casi no entran al álbum y momentos graciosos en el avión.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE45",
+                thumb: "🌌",
+                guest: null,
+                seasonName: "Temporada 1"
+            },
+            {
+                num: 30,
+                season: 1,
+                title: "Sakura Gakuin Days",
+                date: "25 JUL 2025",
+                duration: "28:00",
+                desc: "SU-METAL y MOAMETAL recuerdan sus días en Sakura Gakuin. Anécdotas inéditas, profesores, compañeras y mensajes a las kouhai actuales.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE30",
+                thumb: "🌸",
+                guest: null,
+                seasonName: "Temporada 1"
+            },
+            {
+                num: 15,
+                season: 1,
+                title: "MOMOMETAL Debut Story",
+                date: "11 ABR 2025",
+                duration: "24:30",
+                desc: "MOMOMETAL cuenta cómo fue elegida como miembro oficial. Primer ensayo, nervios, apoyo de las senpai y su canción favorita para debutar.",
+                youtube: "https://youtube.com/watch?v=EXAMPLE15",
+                thumb: "⭐",
+                guest: null,
+                seasonName: "Temporada 1"
+            },
+            {
+                num: 1,
+                season: 1,
+                title: "ESTRENO METARAJI",
+                date: "04 ENE 2025",
+                duration: "29:00",
+                desc: "Primer episodio histórico de Babymetal's Metal Radio! Presentación del programa, qué significa METARAJI, expectativas y mensaje a los METATOMO. ¡Comienza la aventura!",
+                youtube: "https://youtube.com/watch?v=EXAMPLE01",
+                thumb: "🎉",
+                guest: null,
+                seasonName: "Temporada 1"
+            }
+        ];
+
+        let currentFilter = 'all';
+        let currentGuest = null;
+
+        // Renderizar episodios
+        function renderEpisodes() {
+            const grid = document.getElementById('episodesGrid');
+            let filtered = episodes;
+
+            if (currentFilter === 1 || currentFilter === 2) {
+                filtered = episodes.filter(ep => ep.season === currentFilter);
+            } else if (currentFilter === 'final') {
+                filtered = episodes.filter(ep => ep.num === 65);
+            }
+
+            if (currentGuest) {
+                filtered = filtered.filter(ep => ep.guest === currentGuest);
+            }
+
+            document.getElementById('episodeCount').textContent = `(${filtered.length} episodios)`;
+
+            grid.innerHTML = filtered.map(ep => `
+                <div class="episode-card" onclick="window.open('${ep.youtube}', '_blank')">
+                    <div class="episode-thumb">
+                        ${ep.thumb}
+                        <div class="episode-number">#${ep.num}</div>
+                        <div class="episode-season-badge">${ep.seasonName}</div>
+                        <div class="episode-duration">${ep.duration}</div>
+                        <div class="play-overlay">
+                            <button class="play-btn-large">▶</button>
+                        </div>
+                    </div>
+                    <div class="episode-info">
+                        <div class="episode-name">${ep.title}</div>
+                        <div class="episode-meta">
+                            ${ep.date}
+                            ${ep.guest? `<span class="guest-badge">👤 ${ep.guest}</span>` : ''}
+                        </div>
+                        <div class="episode-desc">${ep.desc}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterSeason(season) {
+            currentFilter = season;
+            currentGuest = null;
+            document.querySelectorAll('.season-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderEpisodes();
+        }
+
+        function filterGuest(guest) {
+            currentGuest = guest;
+            renderEpisodes();
+            document.getElementById('episodios').scrollIntoView({behavior:'smooth'});
+        }
+
+        renderEpisodes();
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Audio Visualizer
+        let audioContext, analyser, dataArray, animationId;
+        let isPlaying = false;
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function initVisualizer() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                const source = audioContext.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioContext.destination);
+                analyser.fftSize = 256;
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+            }
+        }
+
+        function draw() {
+            if (!isPlaying) return;
+            animationId = requestAnimationFrame(draw);
+            analyser.getByteFrequencyData(dataArray);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const barWidth = canvas.width / dataArray.length * 2.5;
+            let x = 0;
+            for (let i = 0; i < dataArray.length; i++) {
+                const barHeight = dataArray[i] / 255 * canvas.height * 0.8;
+                const gradient = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
+                gradient.addColorStop(0, '#4B0082');
+                gradient.addColorStop(1, '#8A2BE2');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                x += barWidth + 2;
+            }
+        }
+
+        function playRadio() {
+            initVisualizer();
+            if (audioContext.state === 'suspended') audioContext.resume();
+            audio.play();
+            isPlaying = true;
+            miniPlayer.classList.add('active');
+            draw();
+            updateMetadata();
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+                isPlaying = true;
+                draw();
+            } else {
+                audio.pause();
+                isPlaying = false;
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function toggleMute() {
+            audio.muted =!audio.muted;
+        }
+
+        function closeMiniPlayer() {
+            miniPlayer.classList.remove('active');
+            audio.pause();
+            isPlaying = false;
+            cancelAnimationFrame(animationId);
+        }
+
+        // Metadata
+        let lastSong = '';
+        async function updateMetadata() {
+            try {
+                const response = await fetch('https://api.zeno.fm/mounts/metadata/subscribe/fvqayaa0k2zuv');
+                const data = await response.json();
+                if (data.streamTitle && data.streamTitle!== lastSong) {
+                    lastSong = data.streamTitle;
+                    const parts = data.streamTitle.split(' - ');
+                    let artist = 'METARAJI';
+                    let song = data.streamTitle;
+                    if (parts.length >= 2) {
+                        artist = parts[0].trim();
+                        song = parts[1].trim();
+                    }
+                    document.getElementById('now-playing').textContent = song;
+                    document.getElementById('now-artist').textContent = artist;
+                    document.getElementById('miniTitle').textContent = song;
+                    document.getElementById('miniArtist').textContent = artist;
+                }
+            } catch (error) {
+                document.getElementById('now-playing').textContent = 'METARAJI Live';
+                document.getElementById('now-artist').textContent = 'Tokyo FM';
+            }
+        }
+        setInterval(updateMetadata, 10000);
+        updateMetadata();
+
+        // Auto-play on first interaction
+        document.body.addEventListener('click', () => {
+            if (!isPlaying && audio.paused) {
+                playRadio();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
