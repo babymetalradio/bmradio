@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BABYMETAL METARAJI | Crunchyroll</title>
-    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Crunchyroll_logo.svg/1200px-Crunchyroll_logo.svg.png">
+    <title>BABYMETAL METARAJI </title>
+    <link rel="icon" type="image/jpeg" href="https://i.ibb.co/zT5BR8j1/images-2026-06-04-T163713-663.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -56,15 +57,29 @@
                 background-color: #F47521;
                 color: white;
             }
+.episodio-activo{
+    border:2px solid #F47521 !important;
+}
+           .reproductor-sombra {
+                box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(244, 117, 33, 0.15);
+            }
         }
     </style>
 </head>
 <body class="bg-crunchy-dark text-crunchy-text font-sans">
-    <!-- Barra de Navegación -->
+
+
+<div id="playerHintBanner"
+style="position:fixed;top:-120px;left:50%;transform:translateX(-50%);z-index:99999;transition:top .8s ease, opacity .8s ease;text-align:center;">
+<div style="background:#F47521;color:white;padding:14px 22px;border-radius:12px;font-weight:bold;font-size:18px;box-shadow:0 8px 25px rgba(0,0,0,.6);">
+🎵 Presiona el botón flotante para ir al reproductor 🎵
+</div>
+</div>
+<!-- Barra de Navegación -->
     <nav class="bg-crunchy-card/90 backdrop-blur-md fixed w-full z-50 py-3 px-4 md:px-6 flex items-center justify-between border-b border-gray-800">
         <div class="flex items-center gap-6">
             <a href="#" class="text-crunchy-orange text-2xl font-bold">
-                <i class="fa fa-play-circle mr-2"></i>Crunchyroll
+                <i class="fa fa-play-circle mr-2"></i>Metaraji
             </a>
             <div class="hidden md:flex gap-6">
                 <a href="#" class="hover:text-crunchy-orange transition">Inicio</a>
@@ -75,7 +90,7 @@
         </div>
         <div class="flex items-center gap-4">
             <button class="text-xl hover:text-crunchy-orange transition"><i class="fa fa-search"></i></button>
-            <button class="bg-crunchy-orange hover:bg-crunchy-orange/90 px-4 py-2 rounded-md font-semibold transition">Iniciar Sesión</button>
+            <a href="https://babymetalradio.github.io/bmradio/" class="bg-crunchy-orange hover:bg-crunchy-orange/90 px-4 py-2 rounded-md font-semibold transition inline-flex items-center"><i class="fa fa-radio mr-2"></i>Regresar al Radio</a>
         </div>
     </nav>
 
@@ -86,7 +101,7 @@
             <div class="w-full h-[30vh] md:h-[40vh] overflow-hidden relative">
                 <div class="absolute inset-0 bg-gradient-to-t from-crunchy-dark via-crunchy-dark/80 to-transparent z-10"></div>
                 <img 
-                    src="https://img.youtube.com/vi/Y6MkLbP9yqU/maxresdefault.jpg" 
+                    src="https://i.ibb.co/zT5BR8j1/images-2026-06-04-T163713-663.jpg" 
                     alt="Banner METARAJI" 
                     class="w-full h-full object-cover object-center"
                 >
@@ -98,7 +113,7 @@
                     <!-- Tarjeta de Portada -->
                     <div class="w-[150px] md:w-[200px] shrink-0 mx-auto md:mx-0 rounded-lg overflow-hidden shadow-2xl border-4 border-crunchy-card">
                         <img 
-                            src="https://img.youtube.com/vi/Y6MkLbP9yqU/mqdefault.jpg" 
+                            src="https://i.ibb.co/zT5BR8j1/images-2026-06-04-T163713-663.jpg" 
                             alt="Portada METARAJI" 
                             class="w-full h-auto"
                         >
@@ -110,20 +125,29 @@
                         <div class="flex flex-wrap gap-3 text-sm mb-4">
                             <span class="bg-crunchy-orange/20 text-crunchy-orange px-2 py-1 rounded">PROGRAMA</span>
                             <span id="total-eps">65 Episodios</span>
-                            <span>17 - 21 min</span>
+                            <span>16 - 24 min</span>
                             <span>•</span>
-                            <span>2026</span>
+                            <span>2025 - 2026</span>
                             <span>•</span>
                             <span id="sub-info" class="text-crunchy-muted">Subtítulos en Español</span>
                         </div>
 
                         <div class="flex flex-wrap gap-3 mb-4">
-                            <button class="bg-crunchy-orange hover:bg-crunchy-orange/90 px-6 py-3 rounded-md font-semibold flex items-center gap-2 transition shadow-lg shadow-crunchy-orange/20">
-                                <i class="fa fa-play"></i> <span id="play-text">Reproducir E#65</span>
-                            </button>
-                            <button class="bg-crunchy-card hover:bg-crunchy-hover px-4 py-3 rounded-md font-semibold transition">
-                                <i class="fa fa-plus mr-2"></i> Añadir a Mi Lista
-                            </button>
+                            <button id="playBtn" class="bg-crunchy-orange hover:bg-crunchy-orange/90 px-6 py-3 rounded-md font-semibold flex items-center gap-2 transition shadow-lg shadow-crunchy-orange/20">
+    <i class="fa fa-play"></i>
+    <span id="play-text">Reproducir E#1</span>
+</button>
+                            <div class="flex flex-wrap gap-3">
+
+<a href="https://youtube.com/@babymetaltube_?si=x1ngd_MSva_AkwQH" target="_blank" class="bg-red-600 hover:bg-red-700 px-4 py-3 rounded-md font-semibold transition inline-flex items-center"><i class="fa fa-youtube-play mr-2"></i>Ir al Canal Creador</a>
+
+<button
+id="continueBtn"
+class="bg-blue-600 hover:bg-blue-700 px-4 py-3 rounded-md font-semibold transition">
+    Continuar viendo
+</button>
+
+</div>
                         </div>
 
                         <!-- Sinopsis -->
@@ -138,28 +162,27 @@
             </div>
         </section>
 
-        <!-- ✅ SECCIÓN DEL REPRODUCTOR DE VIDEO -->
+        <!-- ✅ SECCIÓN DEL REPRODUCTOR DE VIDEO - MEJORADO -->
         <section class="container mx-auto px-4 md:px-6 py-8">
-            <div class="bg-crunchy-card rounded-lg overflow-hidden shadow-2xl mb-8">
+            <div class="bg-crunchy-card rounded-lg overflow-hidden reproductor-sombra mb-8 border border-gray-800/50">
                 <!-- Contenedor Responsivo para YouTube -->
-                <div class="relative aspect-video-custom w-full bg-black">
+                <div class="relative aspect-video-custom w-full bg-black/80">
                     <!-- Aquí se cargará el video -->
-                    <iframe 
-                        id="youtube-player"
-                        src="" 
-                        title="Reproductor METARAJI" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen
-                        class="w-full h-full absolute inset-0"
-                    >
-                    </iframe>
-                </div>
+                    <div id="youtube-player" class="w-full h-full"></div>
+<iframe id="external-player" style="display:none;width:100%;height:100%;border:0;" allowfullscreen></iframe>
+                    
+                
 
                 <!-- Información del episodio actual -->
                 <div class="p-5 border-t border-gray-800">
-                    <h2 id="current-ep-title" class="text-2xl font-bold mb-1"></h2>
-                    <p id="current-ep-desc" class="text-crunchy-muted text-sm">Duración: <span id="current-ep-time"></span> · <span id="current-sub-lang"></span></p>
+                    <h2 id="current-ep-title" class="text-2xl font-bold mb-1 text-white"></h2>
+                    <p id="current-ep-desc" class="text-crunchy-muted text-sm flex flex-wrap gap-x-4 gap-y-1">
+                        <span><i class="fa fa-clock-o mr-1"></i> Duración: <span id="current-ep-time"></span></span>
+                        <span>•</span>
+                        <span><i class="fa fa-closed-captioning mr-1"></i> <span id="current-sub-lang"></span></span>
+                        <span>•</span>
+                        <span><i class="fa fa-calendar mr-1"></i> <span id="current-date"></span></span>
+                    </p>
                 </div>
             </div>
 
@@ -196,7 +219,7 @@
             <!-- ✅ CONTENEDOR QUE SE DESPLIEGA / OCULTA -->
             <div 
                 id="episodios-container" 
-                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 transition-max-height overflow-hidden opacity-0 max-h-0"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 opacity-0 max-h-0"
             >
                 <!-- Los episodios se generan aquí -->
             </div>
@@ -208,132 +231,624 @@
         <div class="container mx-auto">
             <div class="border-b border-gray-800 pb-6 mb-6">
                 <a href="#" class="text-crunchy-orange text-xl font-bold mb-4 inline-block">
-                    <i class="fa fa-play-circle mr-2"></i>Crunchyroll
+                    <i class="fa fa-play-circle mr-2"></i>Metaraji
                 </a>
             </div>
-            <p>© 2026 Crunchyroll Clone · Contenido: BABYMETAL METARAJI</p>
+            <p>© 2026 Contenido: BABYMETAL METARAJI</p>
         </div>
     </footer>
 
-    <!-- ✅ BASE DE DATOS COMPLETA: TEMPORADA 1 Y 2 CON TUS ENLACES REALES -->
+    <!-- ✅ BASE DE DATOS: TODOS LOS ENLACES REALES CORREGIDOS DEL #1 AL #65 -->
     <script>
         // --- TEMPORADA 1: SUBTÍTULOS EN ESPAÑOL ---
         const temporada1 = [
-            { ep: 65, id: "Y6MkLbP9yqU", titulo: "✨ [2026.03.28] BABYMETAL METARAJI #65 (ESP SUB) ✨ EPISODIO FINAL", duracion: "20:50", idioma: "Subtítulos en Español" },
-            { ep: 64, id: "Xb4k8tG7wQc", titulo: "✨ [2026.03.21] BABYMETAL METARAJI #64 (ESP SUB) ✨", duracion: "19:29", idioma: "Subtítulos en Español" },
-            { ep: 63, id: "Wz7s3dF9vRb", titulo: "✨ [2026.03.14] BABYMETAL METARAJI #63 (ESP SUB) ✨", duracion: "17:11", idioma: "Subtítulos en Español" },
-            { ep: 62, id: "Vn2c9xM4pLs", titulo: "✨ [2026.03.07] BABYMETAL METARAJI #62 (ESP SUB) ✨", duracion: "18:48", idioma: "Subtítulos en Español" },
-            { ep: 61, id: "Ub5m7kR3tJy", titulo: "✨ [2026.02.28] BABYMETAL METARAJI #61 (ESP SUB) ✨", duracion: "19:12", idioma: "Subtítulos en Español" },
-            { ep: 60, id: "Ta9w4eQ6yHp", titulo: "✨ [2026.02.21] BABYMETAL METARAJI #60 (ESP SUB) ✨", duracion: "18:25", idioma: "Subtítulos en Español" },
-            { ep: 59, id: "Sz3d8cV2bNm", titulo: "✨ [2026.02.14] BABYMETAL METARAJI #59 (ESP SUB) ✨", duracion: "20:05", idioma: "Subtítulos en Español" },
-            { ep: 58, id: "Ry7f1gK9jXc", titulo: "✨ [2026.02.07] BABYMETAL METARAJI #58 (ESP SUB) ✨", duracion: "17:55", idioma: "Subtítulos en Español" },
-            { ep: 57, id: "Qx2a5sF4dGh", titulo: "✨ [2026.01.31] BABYMETAL METARAJI #57 (ESP SUB) ✨", duracion: "18:10", idioma: "Subtítulos en Español" },
-            { ep: 56, id: "Pw9e7rT6yUj", titulo: "✨ [2026.01.24] BABYMETAL METARAJI #56 (ESP SUB) ✨", duracion: "19:30", idioma: "Subtítulos en Español" },
-            { ep: 55, id: "Ov4b8nM3kLp", titulo: "✨ [2026.01.17] BABYMETAL METARAJI #55 (ESP SUB) ✨", duracion: "17:45", idioma: "Subtítulos en Español" },
-            { ep: 54, id: "Nu1c6vZ2xWq", titulo: "✨ [2026.01.10] BABYMETAL METARAJI #54 (ESP SUB) ✨", duracion: "18:50", idioma: "Subtítulos en Español" },
-            { ep: 53, id: "Mt7g9hJ4kFd", titulo: "✨ [2026.01.03] BABYMETAL METARAJI #53 (ESP SUB) ✨", duracion: "19:05", idioma: "Subtítulos en Español" },
-            { ep: 52, id: "Ls3d5fR8tGb", titulo: "✨ [2025.12.27] BABYMETAL METARAJI #52 (ESP SUB) ✨", duracion: "20:15", idioma: "Subtítulos en Español" },
-            { ep: 51, id: "Kr9j2kP7uYm", titulo: "✨ [2025.12.20] BABYMETAL METARAJI #51 (ESP SUB) ✨", duracion: "17:35", idioma: "Subtítulos en Español" },
-            { ep: 50, id: "Jq4a6sD3fHg", titulo: "✨ [2025.12.13] BABYMETAL METARAJI #50 (ESP SUB) ✨", duracion: "18:20", idioma: "Subtítulos en Español" },
-            { ep: 49, id: "Ip8v1bN6mKl", titulo: "✨ [2025.12.06] BABYMETAL METARAJI #49 (ESP SUB) ✨", duracion: "19:40", idioma: "Subtítulos en Español" },
-            { ep: 48, id: "Ho2c9xZ4wVq", titulo: "✨ [2025.11.29] BABYMETAL METARAJI #48 (ESP SUB) ✨", duracion: "17:25", idioma: "Subtítulos en Español" },
-            { ep: 47, id: "Gn7f3gK8jXd", titulo: "✨ [2025.11.22] BABYMETAL METARAJI #47 (ESP SUB) ✨", duracion: "18:55", idioma: "Subtítulos en Español" },
-            { ep: 46, id: "Fm1d5rT9yUj", titulo: "✨ [2025.11.15] BABYMETAL METARAJI #46 (ESP SUB) ✨", duracion: "19:10", idioma: "Subtítulos en Español" },
-            { ep: 45, id: "El4b8nM2kLp", titulo: "✨ [2025.11.08] BABYMETAL METARAJI #45 (ESP SUB) ✨", duracion: "20:00", idioma: "Subtítulos en Español" },
-            { ep: 44, id: "Dc9z6vZ3xWq", titulo: "✨ [2025.11.01] BABYMETAL METARAJI #44 (ESP SUB) ✨", duracion: "17:50", idioma: "Subtítulos en Español" },
-            { ep: 43, id: "Cb2a5sF7dGh", titulo: "✨ [2025.10.25] BABYMETAL METARAJI #43 (ESP SUB) ✨", duracion: "18:35", idioma: "Subtítulos en Español" },
-            { ep: 42, id: "Ba7w4eQ9yHp", titulo: "✨ [2025.10.18] BABYMETAL METARAJI #42 (ESP SUB) ✨", duracion: "19:20", idioma: "Subtítulos en Español" },
-            { ep: 41, id: "Az3d8cV1bNm", titulo: "✨ [2025.10.11] BABYMETAL METARAJI #41 (ESP SUB) ✨", duracion: "17:40", idioma: "Subtítulos en Español" },
-            { ep: 40, id: "Zy9f1gK5jXc", titulo: "✨ [2025.10.04] BABYMETAL METARAJI #40 (ESP SUB) ✨", duracion: "18:45", idioma: "Subtítulos en Español" },
-            { ep: 39, id: "Xw4e7rT8yUj", titulo: "✨ [2025.09.27] BABYMETAL METARAJI #39 (ESP SUB) ✨", duracion: "19:00", idioma: "Subtítulos en Español" },
-            { ep: 38, id: "Wv1c6vZ9xWq", titulo: "✨ [2025.09.20] BABYMETAL METARAJI #38 (ESP SUB) ✨", duracion: "20:10", idioma: "Subtítulos en Español" },
-            { ep: 37, id: "Vu7g9hJ2kFd", titulo: "✨ [2025.09.13] BABYMETAL METARAJI #37 (ESP SUB) ✨", duracion: "17:30", idioma: "Subtítulos en Español" },
-            { ep: 36, id: "Ut3d5fR4tGb", titulo: "✨ [2025.09.06] BABYMETAL METARAJI #36 (ESP SUB) ✨", duracion: "18:25", idioma: "Subtítulos en Español" },
-            { ep: 35, id: "Ts9j2kP6uYm", titulo: "✨ [2025.08.30] BABYMETAL METARAJI #35 (ESP SUB) ✨", duracion: "19:45", idioma: "Subtítulos en Español" },
-            { ep: 34, id: "Rq4a6sD8fHg", titulo: "✨ [2025.08.23] BABYMETAL METARAJI #34 (ESP SUB) ✨", duracion: "17:20", idioma: "Subtítulos en Español" },
-            { ep: 33, id: "Qp8v1bN3mKl", titulo: "✨ [2025.08.16] BABYMETAL METARAJI #33 (ESP SUB) ✨", duracion: "18:50", idioma: "Subtítulos en Español" },
-            { ep: 32, id: "Po2c9xZ5wVq", titulo: "✨ [2025.08.09] BABYMETAL METARAJI #32 (ESP SUB) ✨", duracion: "19:15", idioma: "Subtítulos en Español" },
-            { ep: 31, id: "On7f3gK7jXd", titulo: "✨ [2025.08.02] BABYMETAL METARAJI #31 (ESP SUB) ✨", duracion: "20:05", idioma: "Subtítulos en Español" },
-            { ep: 30, id: "Nm1d5rT6yUj", titulo: "✨ [2025.07.26] BABYMETAL METARAJI #30 (ESP SUB) ✨", duracion: "17:55", idioma: "Subtítulos en Español" },
-            { ep: 29, id: "Ml4b8nM1kLp", titulo: "✨ [2025.07.19] BABYMETAL METARAJI #29 (ESP SUB) ✨", duracion: "18:30", idioma: "Subtítulos en Español" },
-            { ep: 28, id: "Lk9z6vZ2xWq", titulo: "✨ [2025.07.12] BABYMETAL METARAJI #28 (ESP SUB) ✨", duracion: "19:25", idioma: "Subtítulos en Español" },
-            { ep: 27, id: "Kj2a5sF5dGh", titulo: "✨ [2025.07.05] BABYMETAL METARAJI #27 (ESP SUB) ✨", duracion: "17:40", idioma: "Subtítulos en Español" },
-            { ep: 26, id: "Ji7w4eQ8yHp", titulo: "✨ [2025.06.28] BABYMETAL METARAJI #26 (ESP SUB) ✨", duracion: "18:40", idioma: "Subtítulos en Español" },
-            { ep: 25, id: "Hh3d8cV9bNm", titulo: "✨ [2025.06.21] BABYMETAL METARAJI #25 (ESP SUB) ✨", duracion: "19:05", idioma: "Subtítulos en Español" },
-            { ep: 24, id: "Gg9f1gK4jXc", titulo: "✨ [2025.06.14] BABYMETAL METARAJI #24 (ESP SUB) ✨", duracion: "20:15", idioma: "Subtítulos en Español" },
-            { ep: 23, id: "Ff4e7rT7yUj", titulo: "✨ [2025.06.07] BABYMETAL METARAJI #23 (ESP SUB) ✨", duracion: "17:35", idioma: "Subtítulos en Español" },
-            { ep: 22, id: "Ee1c6vZ8xWq", titulo: "✨ [2025.05.31] BABYMETAL METARAJI #22 (ESP SUB) ✨", duracion: "18:20", idioma: "Subtítulos en Español" },
-            { ep: 21, id: "Dd7g9hJ1kFd", titulo: "✨ [2025.05.24] BABYMETAL METARAJI #21 (ESP SUB) ✨", duracion: "19:40", idioma: "Subtítulos en Español" },
-            { ep: 20, id: "Cc3d5fR3tGb", titulo: "✨ [2025.05.17] BABYMETAL METARAJI #20 (ESP SUB) ✨", duracion: "17:25", idioma: "Subtítulos en Español" },
-            { ep: 19, id: "Bb9j2kP5uYm", titulo: "✨ [2025.05.10] BABYMETAL METARAJI #19 (ESP SUB) ✨", duracion: "18:55", idioma: "Subtítulos en Español" },
-            { ep: 18, id: "Aa4a6sD7fHg", titulo: "✨ [2025.05.03] BABYMETAL METARAJI #18 (ESP SUB) ✨", duracion: "19:10", idioma: "Subtítulos en Español" },
-            { ep: 17, id: "Zz8v1bN2mKl", titulo: "✨ [2025.04.26] BABYMETAL METARAJI #17 (ESP SUB) ✨", duracion: "20:00", idioma: "Subtítulos en Español" },
-            { ep: 16, id: "Yy2c9xZ4wVq", titulo: "✨ [2025.04.19] BABYMETAL METARAJI #16 (ESP SUB) ✨", duracion: "17:50", idioma: "Subtítulos en Español" },
-            { ep: 15, id: "Xx7f3gK6jXd", titulo: "✨ [2025.04.12] BABYMETAL METARAJI #15 (ESP SUB) ✨", duracion: "18:35", idioma: "Subtítulos en Español" },
-            { ep: 14, id: "Ww1d5rT5yUj", titulo: "✨ [2025.04.05] BABYMETAL METARAJI #14 (ESP SUB) ✨", duracion: "19:20", idioma: "Subtítulos en Español" },
-            { ep: 13, id: "Vv4b8nM9kLp", titulo: "✨ [2025.03.29] BABYMETAL METARAJI #13 (ESP SUB) ✨", duracion: "17:40", idioma: "Subtítulos en Español" },
-            { ep: 12, id: "Uu9z6vZ1xWq", titulo: "✨ [2025.03.22] BABYMETAL METARAJI #12 (ESP SUB) ✨", duracion: "18:45", idioma: "Subtítulos en Español" },
-            { ep: 11, id: "Tt2a5sF3dGh", titulo: "✨ [2025.03.15] BABYMETAL METARAJI #11 (ESP SUB) ✨", duracion: "19:00", idioma: "Subtítulos en Español" },
-            { ep: 10, id: "Ss7w4eQ6yHp", titulo: "✨ [2025.03.08] BABYMETAL METARAJI #10 (ESP SUB) ✨", duracion: "20:10", idioma: "Subtítulos en Español" },
-            { ep: 9, id: "Rr3d8cV8bNm", titulo: "✨ [2025.03.01] BABYMETAL METARAJI #09 (ESP SUB) ✨", duracion: "17:30", idioma: "Subtítulos en Español" },
-            { ep: 8, id: "Qq9f1gK3jXc", titulo: "✨ [2025.02.22] BABYMETAL METARAJI #08 (ESP SUB) ✨", duracion: "18:25", idioma: "Subtítulos en Español" },
-            { ep: 7, id: "Pp4e7rT4yUj", titulo: "✨ [2025.02.15] BABYMETAL METARAJI #07 (ESP SUB) ✨", duracion: "19:45", idioma: "Subtítulos en Español" },
-            { ep: 6, id: "Oo1c6vZ7xWq", titulo: "✨ [2025.02.08] BABYMETAL METARAJI #06 (ESP SUB) ✨", duracion: "17:20", idioma: "Subtítulos en Español" },
-            { ep: 5, id: "Nn7g9hJ9kFd", titulo: "✨ [2025.02.01] BABYMETAL METARAJI #05 (ESP SUB) ✨", duracion: "18:50", idioma: "Subtítulos en Español" },
-            { ep: 4, id: "Mm3d5fR2tGb", titulo: "✨ [2025.01.25] BABYMETAL METARAJI #04 (ESP SUB) ✨", duracion: "19:15", idioma: "Subtítulos en Español" },
-            { ep: 3, id: "Ll9j2kP4uYm", titulo: "✨ [2025.01.18] BABYMETAL METARAJI #03 (ESP SUB) ✨", duracion: "20:05", idioma: "Subtítulos en Español" },
-            { ep: 2, id: "Kk4a6sD6fHg", titulo: "✨ [2025.01.11] BABYMETAL METARAJI #02 (ESP SUB) ✨", duracion: "17:55", idioma: "Subtítulos en Español" },
-            { ep: 1, id: "Jj8v1bN1mKl", titulo: "✨ [2025.01.04] BABYMETAL METARAJI #01 (ESP SUB) ✨", duracion: "18:30", idioma: "Subtítulos en Español" }
+            { ep: 1, external: true, embed: "https://www.yourupload.com/embed/yoFs71uk40kr", titulo: "#1 - 2025.01.04 BABYMETALのメタラジ！METARAJI Subtítulos en Español", duracion: "24:00", idioma: "Subtítulos: Español", fecha: "04 ENE 2025" },
+            { ep: 2, external: true, embed: "https://www.yourupload.com/embed/6eC6JpU267PA", titulo: "#2 - 2025.01.11 BABYMETALのメタラジ！METARAJI #2 (Subtítulos en español)", duracion: "23:59", idioma: "Subtítulos: Español", fecha: "11 ENE 2025" },
+            { ep: 3, external: true, embed: "https://www.yourupload.com/embed/V37iwRwk7RBj", titulo: "#3 - 2025.01.18 BABYMETALのメタラジ！METARAJI #3 (Subtítulos en español)", duracion: "24:00", idioma: "Subtítulos: Español", fecha: "18 ENE 2025" },
+            { ep: 4, id: "SVewVk0XVjM", titulo: "#4 - 2025.01.25 BABYMETALのメタラジ！METARAJI #4 (Subtítulos en español)", duracion: "17:33", idioma: "Subtítulos: Español", fecha: "25 ENE 2025" },
+            { ep: 5, id: "qAQYSXDA6yg", titulo: "#5 - 2025.02.01 BABYMETALのメタラジ！METARAJI #5 (Subtítulos en Español)", duracion: "17:33", idioma: "Subtítulos: Español", fecha: "01 FEB 2025" },
+            { ep: 6, id: "LNIDow0EJRA", titulo: "#6 - 2025.02.08 BABYMETALのメタラジ！METARAJI #6 (Subtítulos en Español)", duracion: "23:58", idioma: "Subtítulos: Español", fecha: "08 FEB 2025" },
+            { ep: 7, id: "_Pjijoo1Krw", titulo: "#7 - 2025.02.15 BABYMETAL の Metaraji #7 (Subtítulos en español)", duracion: "20:02", idioma: "Subtítulos: Español", fecha: "15 FEB 2025" },
+            { ep: 8, id: "hckgzC_b8Uw", titulo: "#8 - 2025.02.22 BABYMETALのメタラジ！METARAJI #8 con subtítulos en español!", duracion: "19:06", idioma: "Subtítulos: Español", fecha: "22 FEB 2025" },
+            { ep: 9, id: "j-87RSFHT2Y", titulo: "#9 - 2025.03.01 BABYMETALのメタラジ！METARAJI #9 con subtítulos en español!", duracion: "20:17", idioma: "Subtítulos: Español", fecha: "01 MAR 2025" },
+            { ep: 10, id: "iAVHfWywtqE", titulo: "#10 - 2025.03.08 BABYMETAL METARAJI #10 (Subtítulos en español)", duracion: "19:05", idioma: "Subtítulos: Español", fecha: "08 MAR 2025" },
+            { ep: 11, id: "S4BDwZY1L3Q", titulo: "#11 - 2025.03.15 BABYMETAL METARAJI #11 (Subtítulos en Español)", duracion: "17:02", idioma: "Subtítulos: Español", fecha: "15 MAR 2025" },
+            { ep: 12, id: "TaoaZPzp-BY", titulo: "#12 - 2025.03.22 BABYMETAL METARAJI #12 (Subtítulos en Español)", duracion: "19:22", idioma: "Subtítulos: Español", fecha: "22 MAR 2025" },
+            { ep: 13, id: "AZAS_Wv9R4k", titulo: "#13 - 2025.03.29 BABYMETAL METARAJI #13 (Subtítulos en Español)", duracion: "20:03", idioma: "Subtítulos: Español", fecha: "29 MAR 2025" },
+            { ep: 14, id: "ZbeWeiluI8o", titulo: "#14 - 2025.04.05 BABYMETAL METARAJI #14 (Subtítulos en Español)", duracion: "16:01", idioma: "Subtítulos: Español", fecha: "05 ABR 2025" },
+            { ep: 15, id: "w08u_LVn_Ak", titulo: "#15 - 2025.04.12 BABYMETAL METARAJI #15 (Subtítulos en Español)", duracion: "16:40", idioma: "Subtítulos: Español", fecha: "12 ABR 2025" },
+            { ep: 16, id: "myAcKbi2yCI", titulo: "#16 - 2025.04.19 BABYMETAL METARAJI #16 (Subtítulos en Español)", duracion: "16:19", idioma: "Subtítulos: Español", fecha: "19 ABR 2025" },
+            { ep: 17, id: "3vD2gIhjSDw", titulo: "#17 - 2025.04.26 BABYMETAL METARAJI #17 (Subtítulos en Español)", duracion: "17:33", idioma: "Subtítulos: Español", fecha: "26 ABR 2025" },
+            { ep: 18, id: "uNjU79dyzO4", titulo: "#18 - 2025.05.03 BABYMETAL METARAJI #18 (Subtítulos en Español)", duracion: "18:12", idioma: "Subtítulos: Español", fecha: "03 MAY 2025" },
+            { ep: 19, id: "UlBAmFC5GGQ", titulo: "#19 - 2025.05.10 BABYMETAL METARAJI #19 (Subtítulos en Español)", duracion: "18:42", idioma: "Subtítulos: Español", fecha: "10 MAY 2025" },
+            { ep: 20, id: "3AkYU6MSpDQ", titulo: "#20 - 2025.05.17 BABYMETAL METARAJI #20 (Subtítulos en Español)", duracion: "19:59", idioma: "Subtítulos: Español", fecha: "17 MAY 2025" },
+            { ep: 21, id: "F1AdGfbrrVk", titulo: "#21 - 2025.05.24 BABYMETAL METARAJI #21 (Subtítulos en Español)", duracion: "19:10", idioma: "Subtítulos: Español", fecha: "24 MAY 2025" },
+            { ep: 22, id: "NW4beSpAP-I", titulo: "#22 - 2025.05.31 BABYMETAL METARAJI #22 (Subtítulos en Español)", duracion: "16:06", idioma: "Subtítulos: Español", fecha: "31 MAY 2025" },
+            { ep: 23, id: "sZpD9ePuW0Q", titulo: "#23 - 2025.06.07 BABYMETAL METARAJI #23 (Subtítulos en Español)", duracion: "18:44", idioma: "Subtítulos: Español", fecha: "07 JUN 2025" },
+            { ep: 24, id: "zbG8KTwYpFg", titulo: "#24 - 2025.06.14 BABYMETAL METARAJI #24 (Subtítulos en Español)", duracion: "18:13", idioma: "Subtítulos: Español", fecha: "14 JUN 2025" },
+            { ep: 25, id: "mjODxx8ahjo", titulo: "#25 - 2025.06.21 BABYMETAL METARAJI #25 (Subtítulos en Español)", duracion: "20:23", idioma: "Subtítulos: Español", fecha: "21 JUN 2025" },
+            { ep: 26, id: "ufa5vfMGodM", titulo: "#26 - 2025.06.28 BABYMETAL METARAJI #26 (Subtítulos en Español)", duracion: "19:03", idioma: "Subtítulos: Español", fecha: "28 JUN 2025" },
+            { ep: 27, id: "eXnGz2uMkTk", titulo: "#27 - 2025.07.05 BABYMETAL METARAJI #27 (Subs en Español)", duracion: "19:36", idioma: "Subtítulos: Español", fecha: "05 JUL 2025" },
+            { ep: 28, id: "jem6y_F7ofk", titulo: "#28 - 2025.07.12 BABYMETAL METARAJI #28 (Subtítulos en Español)", duracion: "19:26", idioma: "Subtítulos: Español", fecha: "12 JUL 2025" },
+            { ep: 29, id: "ccKwzOjIGO0", titulo: "#29 - 2025.07.19 BABYMETAL METARAJI #29 (Subtítulos en Español)", duracion: "19:53", idioma: "Subtítulos: Español", fecha: "19 JUL 2025" },
+            { ep: 30, id: "UFbPm0fXfkk", titulo: "#30 - 2025.07.26 BABYMETAL METARAJI #30 (Subtítulos en Español)", duracion: "19:50", idioma: "Subtítulos: Español", fecha: "26 JUL 2025" },
+            { ep: 31, id: "tFFf_M2mSxI", titulo: "#31 - 2025.08.02 BABYMETAL METARAJI #31 (Subtítulos en Español)", duracion: "19:48", idioma: "Subtítulos: Español", fecha: "02 AGO 2025" },
+            { ep: 32, id: "pOR9yKNcfjw", titulo: "#32 - 2025.08.09 BABYMETAL METARAJI #32 (Subtítulos en Español)", duracion: "18:01", idioma: "Subtítulos: Español", fecha: "09 AGO 2025" },
+            { ep: 33, id: "3P8tINaFkr0", titulo: "#33 - 2025.08.16 BABYMETAL METARAJI #33 (Subtítulos en Español)", duracion: "19:13", idioma: "Subtítulos: Español", fecha: "16 AGO 2025" },
+            { ep: 34, id: "WcRQY4elGVk", titulo: "#34 - 2025.08.23 BABYMETAL METARAJI #34 (Subtítulos en Español)", duracion: "15:46", idioma: "Subtítulos: Español", fecha: "23 AGO 2025" },
+            { ep: 35, id: "a1qjKUodxxI", titulo: "#35 - 2025.08.30 BABYMETAL METARAJI #35 (Subs en Español)", duracion: "18:16", idioma: "Subtítulos: Español", fecha: "30 AGO 2025" },
+            { ep: 36, id: "NSybBCUjzMQ", titulo: "#36 - 2025.09.06 BABYMETAL METARAJI #36 (Subtítulos en Español)", duracion: "18:51", idioma: "Subtítulos: Español", fecha: "06 SEP 2025" },
+            { ep: 37, id: "SoDOlxm3_vQ", titulo: "#37 - 2025.09.13 BABYMETAL METARAJI #37 (Subtítulos en Español)", duracion: "18:25", idioma: "Subtítulos: Español", fecha: "13 SEP 2025" },
+            { ep: 38, id: "uv03_jjesYY", titulo: "#38 - 2025.09.20 BABYMETAL METARAJI #38 (Subtítulos en Español)", duracion: "21:34", idioma: "Subtítulos: Español", fecha: "20 SEP 2025" },
+            { ep: 39, id: "SsqSwqs10jM", titulo: "#39 - 2025.09.27 BABYMETAL METARAJI #39 (Subtítulos en Español)", duracion: "17:10", idioma: "Subtítulos: Español", fecha: "27 SEP 2025" },
+            { ep: 40, id: "iHYxYQ2fj5U", titulo: "#40 - 2025.10.04 BABYMETAL METARAJI #40 (Sub. Esp)", duracion: "17:23", idioma: "Subtítulos: Español", fecha: "04 OCT 2025" },
+            { ep: 41, id: "jf4Fyhuo0jM", titulo: "#41 - 2025.10.11 BABYMETAL METARAJI #41 (Subtítulos en Español)", duracion: "19:12", idioma: "Subtítulos: Español", fecha: "11 OCT 2025" },
+            { ep: 42, id: "XTi7KNdiymc", titulo: "#42 - 2025.10.18 BABYMETAL METARAJI #42 (Subtítulos en Español)", duracion: "20:14", idioma: "Subtítulos: Español", fecha: "18 OCT 2025" },
+            { ep: 43, id: "5DRGGkP54CA", titulo: "#43 - 2025.10.25 BABYMETAL METARAJI #43 (Sub. Esp)", duracion: "18:41", idioma: "Subtítulos: Español", fecha: "25 OCT 2025" },
+            { ep: 44, id: "wWhhl4X5VKw", titulo: "#44 - 2025.11.01 BABYMETAL METARAJI #44 (SUB ESP)", duracion: "19:14", idioma: "Subtítulos: Español", fecha: "01 NOV 2025" },
+            { ep: 45, id: "-H4AiJldhH0", titulo: "#45 - 2025.11.08 BABYMETAL METARAJI #45 (Subtítulos en Español)", duracion: "20:09", idioma: "Subtítulos: Español", fecha: "08 NOV 2025" },
+            { ep: 46, id: "6ISJf1_CwrY", titulo: "#46 - 2025.11.15 BABYMETAL METARAJI #46 (Subtítulos en Español)", duracion: "18:11", idioma: "Subtítulos: Español", fecha: "15 NOV 2025" },
+            { ep: 47, id: "oQQaQuWvVE8", titulo: "#47 - 2025.11.22 BABYMETAL METARAJI #47 (ESP SUB)", duracion: "19:35", idioma: "Subtítulos: Español", fecha: "22 NOV 2025" },
+            { ep: 48, id: "Tu4GwgCLSds", titulo: "#48 - 2025.11.29 BABYMETAL METARAJI #48 (ESP SUBS)", duracion: "20:53", idioma: "Subtítulos: Español", fecha: "29 NOV 2025" },
+            { ep: 49, id: "dp6QERhv-hQ", titulo: "#49 - 2025.12.06 BABYMETAL METARAJI #49 (SUBTÍTULOS EN ESPAÑOL)", duracion: "20:31", idioma: "Subtítulos: Español", fecha: "06 DIC 2025" },
+            { ep: 50, id: "KKM8SQp3--Q", titulo: "#50 - 2025.12.13 BABYMETAL METARAJI #50 (ESP SUB)", duracion: "19:19", idioma: "Subtítulos: Español", fecha: "13 DIC 2025" },
+            { ep: 51, id: "2JH1j8YOPsQ", titulo: "#51 - 2025.12.20 BABYMETAL METARAJI #51 (ESP SUB)", duracion: "18:24", idioma: "Subtítulos: Español", fecha: "20 DIC 2025" },
+            { ep: 52, id: "VEtgqrXAqDQ", titulo: "#52 - 2025.12.27 BABYMETAL METARAJI #52 (ESP SUB)", duracion: "18:50", idioma: "Subtítulos: Español", fecha: "27 DIC 2025" },
+            { ep: 53, id: "7kmIN0QyVKg", titulo: "#53 - 2026.01.03 BABYMETAL METARAJI #53 (ESP SUBS)", duracion: "19:00", idioma: "Subtítulos: Español", fecha: "03 ENE 2026" },
+            { ep: 54, id: "pehSkr9XXQY", titulo: "#54 - 2026.01.10 BABYMETAL METARAJI #54 (ESP SUB)", duracion: "20:11", idioma: "Subtítulos: Español", fecha: "10 ENE 2026" },
+            { ep: 55, id: "kqMs9AQ6ykA", titulo: "#55 - 2026.01.17 BABYMETAL METARAJI #55 (SUBS EN ESPAÑOL)", duracion: "17:17", idioma: "Subtítulos: Español", fecha: "17 ENE 2026" },
+            { ep: 56, id: "k58OeY9CFww", titulo: "#56 - 2026.01.24 BABYMETAL METARAJI #56 (ESP SUB)", duracion: "23:57", idioma: "Subtítulos: Español", fecha: "24 ENE 2026" },
+            { ep: 57, id: "AWL87q2FlSA", titulo: "#57 - 2026.01.31 BABYMETAL METARAJI #57 (ESP SUBS)", duracion: "18:42", idioma: "Subtítulos: Español", fecha: "31 ENE 2026" },
+            { ep: 58, id: "XXswwRz7FVI", titulo: "#58 - 2026.02.07 BABYMETAL METARAJI #58 (ESP SUB)", duracion: "19:19", idioma: "Subtítulos: Español", fecha: "07 FEB 2026" },
+            { ep: 59, id: "mEV1mjDLP28", titulo: "#59 - 2026.02.14 BABYMETAL METARAJI #59 (ESP SUB)", duracion: "19:50", idioma: "Subtítulos: Español", fecha: "14 FEB 2026" },
+            { ep: 60, id: "BrSCIx7Rq0U", titulo: "#60 - 2026.02.21 BABYMETAL METARAJI #60 (ESP SUB)", duracion: "19:44", idioma: "Subtítulos: Español", fecha: "21 FEB 2026" },
+            { ep: 61, id: "Kh08aQKWL8Q", titulo: "#61 - 2026.02.28 BABYMETAL METARAJI #61 (ESP SUB)", duracion: "19:09", idioma: "Subtítulos: Español", fecha: "28 FEB 2026" },
+            { ep: 62, id: "LaB2tRiIM04", titulo: "#62 - 2026.03.07 BABYMETAL METARAJI #62 (ESP SUB)", duracion: "18:48", idioma: "Subtítulos: Español", fecha: "07 MAR 2026" },
+            { ep: 63, id: "xXGAlLe2HZM", titulo: "#63 - 2026.03.14 BABYMETAL METARAJI #63 (ESP SUB)", duracion: "17:11", idioma: "Subtítulos: Español", fecha: "14 MAR 2026" },
+            { ep: 64, id: "XIJRrgQSGyk", titulo: "#64 - 2026.03.21 BABYMETAL METARAJI #64 (ESP SUB)", duracion: "19:29", idioma: "Subtítulos: Español", fecha: "21 MAR 2026" },
+            { ep: 65, id: "Eeit3Qf7asQ", titulo: "#65 - 2026.03.28 BABYMETAL METARAJI #65 (ESP SUB) EPISODIO FINAL", duracion: "19:29", idioma: "Subtítulos: Español", fecha: "28 MAR 2026" }
         ];
 
         // --- TEMPORADA 2: SUBTÍTULOS EN INGLÉS ---
         const temporada2 = [
-            { ep: 65, id: "9FmKpRzXyWc", titulo: "✨ [2026.03.28] BABYMETAL METARAJI #65 (ENG SUB) ✨ FINAL EPISODE", duracion: "20:45", idioma: "Subtitles in English" },
-            { ep: 64, id: "8EdGtBvNqAp", titulo: "✨ [2026.03.21] BABYMETAL METARAJI #64 (ENG SUB) ✨", duracion: "19:20", idioma: "Subtitles in English" },
-            { ep: 63, id: "7UjMwQaZsDf", titulo: "✨ [2026.03.14] BABYMETAL METARAJI #63 (ENG SUB) ✨", duracion: "17:05", idioma: "Subtitles in English" },
-            { ep: 62, id: "6YhRnFbTkVg", titulo: "✨ [2026.03.07] BABYMETAL METARAJI #62 (ENG SUB) ✨", duracion: "18:40", idioma: "Subtitles in English" },
-            { ep: 61, id: "5WiLpGcXjHm", titulo: "✨ [2026.02.28] BABYMETAL METARAJI #61 (ENG SUB) ✨", duracion: "19:05", idioma: "Subtitles in English" },
-            { ep: 60, id: "4VfKqHbYgNr", titulo: "✨ [2026.02.21] BABYMETAL METARAJI #60 (ENG SUB) ✨", duracion: "18:20", idioma: "Subtitles in English" },
-            { ep: 59, id: "3UjPmJcFdZs", titulo: "✨ [2026.02.14] BABYMETAL METARAJI #59 (ENG SUB) ✨", duracion: "19:55", idioma: "Subtitles in English" },
-            { ep: 58, id: "2TiOgBvRwQa", titulo: "✨ [2026.02.07] BABYMETAL METARAJI #58 (ENG SUB) ✨", duracion: "17:50", idioma: "Subtitles in English" },
-            { ep: 57, id: "1ShNfAzXeDc", titulo: "✨ [2026.01.31] BABYMETAL METARAJI #57 (ENG SUB) ✨", duracion: "18:05", idioma: "Subtitles in English" },
-            { ep: 56, id: "0RgMeCyWbVf", titulo: "✨ [2026.01.24] BABYMETAL METARAJI #56 (ENG SUB) ✨", duracion: "19:25", idioma: "Subtitles in English" },
-            { ep: 55, id: "9FdLpXzKvMg", titulo: "✨ [2026.01.17] BABYMETAL METARAJI #55 (ENG SUB) ✨", duracion: "17:40", idioma: "Subtitles in English" },
-            { ep: 54, id: "8EsKqYbJnHf", titulo: "✨ [2026.01.10] BABYMETAL METARAJI #54 (ENG SUB) ✨", duracion: "18:45", idioma: "Subtitles in English" },
-            { ep: 53, id: "7DcJmWvGrTa", titulo: "✨ [2026.01.03] BABYMETAL METARAJI #53 (ENG SUB) ✨", duracion: "19:00", idioma: "Subtitles in English" },
-            { ep: 52, id: "6BaHnFzXpQs", titulo: "✨ [2025.12.27] BABYMETAL METARAJI #52 (ENG SUB) ✨", duracion: "20:10", idioma: "Subtitles in English" },
-            { ep: 51, id: "5AzGtRyKdWc", titulo: "✨ [2025.12.20] BABYMETAL METARAJI #51 (ENG SUB) ✨", duracion: "17:30", idioma: "Subtitles in English" },
-            { ep: 50, id: "4ZyFsQbVmEn", titulo: "✨ [2025.12.13] BABYMETAL METARAJI #50 (ENG SUB) ✨", duracion: "18:15", idioma: "Subtitles in English" },
-            { ep: 49, id: "3XwEdPcLjRa", titulo: "✨ [2025.12.06] BABYMETAL METARAJI #49 (ENG SUB) ✨", duracion: "19:35", idioma: "Subtitles in English" },
-            { ep: 48, id: "2VuCbNkGfQs", titulo: "✨ [2025.11.29] BABYMETAL METARAJI #48 (ENG SUB) ✨", duracion: "17:20", idioma: "Subtitles in English" },
-            { ep: 47, id: "1TsBaMjDwVc", titulo: "✨ [2025.11.22] BABYMETAL METARAJI #47 (ENG SUB) ✨", duracion: "18:50", idioma: "Subtitles in English" },
-            { ep: 46, id: "0SrZyKpXnMd", titulo: "✨ [2025.11.15] BABYMETAL METARAJI #46 (ENG SUB) ✨", duracion: "19:05", idioma: "Subtitles in English" },
-            { ep: 45, id: "9QaWvFbJtHg", titulo: "✨ [2025.11.08] BABYMETAL METARAJI #45 (ENG SUB) ✨", duracion: "19:55", idioma: "Subtitles in English" },
-            { ep: 44, id: "8PzUcRnLdFb", titulo: "✨ [2025.11.01] BABYMETAL METARAJI #44 (ENG SUB) ✨", duracion: "17:45", idioma: "Subtitles in English" },
-            { ep: 43, id: "7OyTbVmKqGa", titulo: "✨ [2025.10.25] BABYMETAL METARAJI #43 (ENG SUB) ✨", duracion: "18:30", idioma: "Subtitles in English" },
-            { ep: 42, id: "6NxSaJfCpZd", titulo: "✨ [2025.10.18] BABYMETAL METARAJI #42 (ENG SUB) ✨", duracion: "19:15", idioma: "Subtitles in English" },
-            { ep: 41, id: "5MwRgHbYvEs", titulo: "✨ [2025.10.11] BABYMETAL METARAJI #41 (ENG SUB) ✨", duracion: "17:35", idioma: "Subtitles in English" },
-            { ep: 40, id: "4LvFdNcXaQz", titulo: "✨ [2025.10.04] BABYMETAL METARAJI #40 (ENG SUB) ✨", duracion: "18:40", idioma: "Subtitles in English" },
-            { ep: 39, id: "3KuEbPmJsWr", titulo: "✨ [2025.09.27] BABYMETAL METARAJI #39 (ENG SUB) ✨", duracion: "18:55", idioma: "Subtitles in English" },
-            { ep: 38, id: "2JtDcQvHnFg", titulo: "✨ [2025.09.20] BABYMETAL METARAJI #38 (ENG SUB) ✨", duracion: "20:05", idioma: "Subtitles in English" },
-            { ep: 37, id: "1IsBaVzWqEd", titulo: "✨ [2025.09.13] BABYMETAL METARAJI #37 (ENG SUB) ✨", duracion: "17:25", idioma: "Subtitles in English" },
-            { ep: 36, id: "0HrZyXpKbMc", titulo: "✨ [2025.09.06] BABYMETAL METARAJI #36 (ENG SUB) ✨", duracion: "18:20", idioma: "Subtitles in English" },
-            { ep: 35, id: "9GqWvJnLdFs", titulo: "✨ [2025.08.30] BABYMETAL METARAJI #35 (ENG SUB) ✨", duracion: "19:40", idioma: "Subtitles in English" },
-            { ep: 34, id: "8FpUcMbKgHa", titulo: "✨ [2025.08.23] BABYMETAL METARAJI #34 (ENG SUB) ✨", duracion: "17:15", idioma: "Subtitles in English" },
-            { ep: 33, id: "7EoTaZdCvRb", titulo: "✨ [2025.08.16] BABYMETAL METARAJI #33 (ENG SUB) ✨", duracion: "18:45", idioma: "Subtitles in English" },
-            { ep: 32, id: "6DnScXfJpQc", titulo: "✨ [2025.08.09] BABYMETAL METARAJI #32 (ENG SUB) ✨", duracion: "19:10", idioma: "Subtitles in English" },
-            { ep: 31, id: "5CmRgYbVnEz", titulo: "✨ [2025.08.02] BABYMETAL METARAJI #31 (ENG SUB) ✨", duracion: "20:00", idioma: "Subtitles in English" },
-            { ep: 30, id: "4BlFdWaKsWr", titulo: "✨ [2025.07.26] BABYMETAL METARAJI #30 (ENG SUB) ✨", duracion: "17:50", idioma: "Subtitles in English" },
-            { ep: 29, id: "3AkEbPvJtHg", titulo: "✨ [2025.07.19] BABYMETAL METARAJI #29 (ENG SUB) ✨", duracion: "18:25", idioma: "Subtitles in English" },
-            { ep: 28, id: "2ZjDcQnLmFs", titulo: "✨ [2025.07.12] BABYMETAL METARAJI #28 (ENG SUB) ✨", duracion: "19:20", idioma: "Subtitles in English" },
-            { ep: 27, id: "1YiBaXzKdQa", titulo: "✨ [2025.07.05] BABYMETAL METARAJI #27 (ENG SUB) ✨", duracion: "17:35", idioma: "Subtitles in English" },
-            { ep: 26, id: "0XwZyPcVbNc", titulo: "✨ [2025.06.28] BABYMETAL METARAJI #26 (ENG SUB) ✨", duracion: "18:35", idioma: "Subtitles in English" },
-            { ep: 25, id: "9VuWvFgJtRd", titulo: "✨ [2025.06.21] BABYMETAL METARAJI #25 (ENG SUB) ✨", duracion: "19:00", idioma: "Subtitles in English" },
-            { ep: 24, id: "8TsUcMnKhGa", titulo: "✨ [2025.06.14] BABYMETAL METARAJI #24 (ENG SUB) ✨", duracion: "20:10", idioma: "Subtitles in English" },
-            { ep: 23, id: "7RqTbLdCfZs", titulo: "✨ [2025.06.07] BABYMETAL METARAJI #23 (ENG SUB) ✨", duracion: "17:30", idioma: "Subtitles in English" },
-            { ep: 22, id: "6PnSaJvHmQc", titulo: "✨ [2025.05.31] BABYMETAL METARAJI #22 (ENG SUB) ✨", duracion: "18:15", idioma: "Subtitles in English" },
-            { ep: 21, id: "5MfRgXbYwEd", titulo: "✨ [2025.05.24] BABYMETAL METARAJI #21 (ENG SUB) ✨", duracion: "19:35", idioma: "Subtitles in English" },
-            { ep: 20, id: "4LdFcNzKpVs", titulo: "✨ [2025.05.17] BABYMETAL METARAJI #20 (ENG SUB) ✨", duracion: "17:20", idioma: "Subtitles in English" },
-            { ep: 19, id: "3KbEvPjGnRa", titulo: "✨ [2025.05.10] BABYMETAL METARAJI #19 (ENG SUB) ✨", duracion: "18:50", idioma: "Subtitles in English" },
-            { ep: 18, id: "2JaDcVmKqWz", titulo: "✨ [2025.05.03] BABYMETAL METARAJI #18 (ENG SUB) ✨", duracion: "19:05", idioma: "Subtitles in English" },
-            { ep: 17, id: "1HzXyPbJsFr", titulo: "✨ [2025.04.26] BABYMETAL METARAJI #17 (ENG SUB) ✨", duracion: "
+   { ep: 1, external: true, embed: "https://www.yourupload.com/embed/nB1w6CqGIAgb", titulo: "#1 - BABYMETAL METARAJI", duracion: "24:00", idioma: "Subtitles: English", fecha: "04 JAN 2025" },
+{ ep: 2, external: true, embed: "https://www.yourupload.com/embed/Yli6VNw7se2H", titulo: "#2 - BABYMETAL METARAJI", duracion: "23:59", idioma: "Subtitles: English", fecha: "11 JAN 2025" },
+{ ep: 3, external: true, embed: "https://www.yourupload.com/embed/14l287rWw6Xs", titulo: "#3 - BABYMETAL METARAJI", duracion: "24:00", idioma: "Subtitles: English", fecha: "18 JAN 2025" },
+{ ep: 4, id: "yj619ynnkEI", titulo: "#4 - BABYMETAL METARAJI", duracion: "17:33", idioma: "Subtitles: English", fecha: "25 JAN 2025" },
+{ ep: 5, id: "n7igclxy5js", titulo: "#5 - BABYMETAL METARAJI", duracion: "17:33", idioma: "Subtitles: English", fecha: "01 FEB 2025" },
+{ ep: 6, id: "coxH3R6ZTBc", titulo: "#6 - BABYMETAL METARAJI", duracion: "23:58", idioma: "Subtitles: English", fecha: "08 FEB 2025" },
+{ ep: 7, id: "j6uUHd-7jQQ", titulo: "#7 - BABYMETAL METARAJI", duracion: "20:02", idioma: "Subtitles: English", fecha: "15 FEB 2025" },
+{ ep: 8, id: "32IjSlYet4c", titulo: "#8 - BABYMETAL METARAJI", duracion: "19:06", idioma: "Subtitles: English", fecha: "22 FEB 2025" },
+{ ep: 9, id: "MoqlsBLfHgo", titulo: "#9 - BABYMETAL METARAJI", duracion: "20:17", idioma: "Subtitles: English", fecha: "01 MAR 2025" },
+{ ep: 10, id: "DsSrxveoY_A", titulo: "#10 - BABYMETAL METARAJI", duracion: "19:05", idioma: "Subtitles: English", fecha: "08 MAR 2025" },
+{ ep: 11, id: "z1zhqVdtGLk", titulo: "#11 - BABYMETAL METARAJI", duracion: "17:02", idioma: "Subtitles: English", fecha: "15 MAR 2025" },
+{ ep: 12, id: "8rjAvqYu7Ps", titulo: "#12 - BABYMETAL METARAJI", duracion: "19:22", idioma: "Subtitles: English", fecha: "22 MAR 2025" },
+{ ep: 13, id: "KGYvASaJfqw", titulo: "#13 - BABYMETAL METARAJI", duracion: "20:03", idioma: "Subtitles: English", fecha: "29 MAR 2025" },
+{ ep: 14, id: "_rqcGOTP1j4", titulo: "#14 - BABYMETAL METARAJI", duracion: "16:01", idioma: "Subtitles: English", fecha: "05 APR 2025" },
+{ ep: 15, id: "NMKUF_dcvNg", titulo: "#15 - BABYMETAL METARAJI", duracion: "16:40", idioma: "Subtitles: English", fecha: "12 APR 2025" },
+{ ep: 16, id: "Df59x7QDtHE", titulo: "#16 - BABYMETAL METARAJI", duracion: "16:19", idioma: "Subtitles: English", fecha: "19 APR 2025" },
+{ ep: 17, id: "lkI4jq4dVQU", titulo: "#17 - BABYMETAL METARAJI", duracion: "17:33", idioma: "Subtitles: English", fecha: "26 APR 2025" },
+{ ep: 18, id: "blfU46D9vqo", titulo: "#18 - BABYMETAL METARAJI", duracion: "18:12", idioma: "Subtitles: English", fecha: "03 MAY 2025" },
+{ ep: 19, id: "nKKAjKbI-Fc", titulo: "#19 - BABYMETAL METARAJI", duracion: "18:42", idioma: "Subtitles: English", fecha: "10 MAY 2025" },
+{ ep: 20, id: "AlAHAarbnfw", titulo: "#20 - BABYMETAL METARAJI", duracion: "19:59", idioma: "Subtitles: English", fecha: "17 MAY 2025" },
+{ ep: 21, id: "9jXaoObV--k", titulo: "#21 - BABYMETAL METARAJI", duracion: "19:16", idioma: "Subtitles: English", fecha: "24 MAY 2025" },
+{ ep: 22, id: "omX4SLFW3CU", titulo: "#22 - BABYMETAL METARAJI", duracion: "16:06", idioma: "Subtitles: English", fecha: "31 MAY 2025" },
+{ ep: 23, id: "Krl9SxTQ3Gw", titulo: "#23 - BABYMETAL METARAJI", duracion: "18:44", idioma: "Subtitles: English", fecha: "07 JUN 2025" },
+{ ep: 24, id: "bd1hYrosBqU", titulo: "#24 - BABYMETAL METARAJI", duracion: "18:13", idioma: "Subtitles: English", fecha: "14 JUN 2025" },
+{ ep: 25, id: "iw1P1AgNvfc", titulo: "#25 - BABYMETAL METARAJI", duracion: "20:23", idioma: "Subtitles: English", fecha: "21 JUN 2025" },
+{ ep: 26, id: "6wq7rhRMbGk", titulo: "#26 - BABYMETAL METARAJI", duracion: "19:03", idioma: "Subtitles: English", fecha: "28 JUN 2025" },
+{ ep: 27, id: "XoqJnL2io8k", titulo: "#27 - BABYMETAL METARAJI", duracion: "19:36", idioma: "Subtitles: English", fecha: "05 JUL 2025" },
+{ ep: 28, id: "Tl_NXNSX1iE", titulo: "#28 - BABYMETAL METARAJI", duracion: "19:26", idioma: "Subtitles: English", fecha: "12 JUL 2025" },
+{ ep: 29, id: "iR-lgMeK6TE", titulo: "#29 - BABYMETAL METARAJI", duracion: "19:53", idioma: "Subtitles: English", fecha: "19 JUL 2025" },
+{ ep: 30, id: "TweFmZcNiE0", titulo: "#30 - BABYMETAL METARAJI", duracion: "19:50", idioma: "Subtitles: English", fecha: "26 JUL 2025" },
+{ ep: 31, id: "Rcm5nY7kJkA", titulo: "#31 - BABYMETAL METARAJI", duracion: "19:48", idioma: "Subtitles: English", fecha: "02 AUG 2025" },
+{ ep: 32, id: "uKsClhLqXcY", titulo: "#32 - BABYMETAL METARAJI", duracion: "18:01", idioma: "Subtitles: English", fecha: "09 AUG 2025" },
+{ ep: 33, id: "Rs8mfL_GN4Y", titulo: "#33 - BABYMETAL METARAJI", duracion: "19:13", idioma: "Subtitles: English", fecha: "16 AUG 2025" },
+{ ep: 34, id: "cEwDsGwB7iU", titulo: "#34 - BABYMETAL METARAJI", duracion: "15:46", idioma: "Subtitles: English", fecha: "23 AUG 2025" },
+{ ep: 35, id: "2vb9hr3PCI8", titulo: "#35 - BABYMETAL METARAJI", duracion: "18:16", idioma: "Subtitles: English", fecha: "30 AUG 2025" },
+{ ep: 36, id: "MrKexERXmC0", titulo: "#36 - BABYMETAL METARAJI", duracion: "18:51", idioma: "Subtitles: English", fecha: "06 SEP 2025" },
+{ ep: 37, id: "KwNZyNwauZQ", titulo: "#37 - BABYMETAL METARAJI", duracion: "18:25", idioma: "Subtitles: English", fecha: "13 SEP 2025" },
+{ ep: 38, id: "2GXgQ-8cqQ8", titulo: "#38 - BABYMETAL METARAJI", duracion: "21:34", idioma: "Subtitles: English", fecha: "20 SEP 2025" },
+{ ep: 39, id: "gtSclcQe480", titulo: "#39 - BABYMETAL METARAJI", duracion: "17:10", idioma: "Subtitles: English", fecha: "27 SEP 2025" },
+{ ep: 40, id: "PKzwhp25XlI", titulo: "#40 - BABYMETAL METARAJI", duracion: "17:23", idioma: "Subtitles: English", fecha: "04 OCT 2025" },
+{ ep: 41, id: "MPaiI5i4RwY", titulo: "#41 - BABYMETAL METARAJI", duracion: "19:12", idioma: "Subtitles: English", fecha: "11 OCT 2025" },
+{ ep: 42, id: "jv8KSq-kbC0", titulo: "#42 - BABYMETAL METARAJI", duracion: "20:14", idioma: "Subtitles: English", fecha: "18 OCT 2025" },
+{ ep: 43, id: "-VvOJ03UDaY", titulo: "#43 - BABYMETAL METARAJI", duracion: "18:41", idioma: "Subtitles: English", fecha: "25 OCT 2025" },
+{ ep: 44, id: "QH7v7UN4iBQ", titulo: "#44 - BABYMETAL METARAJI", duracion: "19:14", idioma: "Subtitles: English", fecha: "01 NOV 2025" },
+{ ep: 45, id: "XghlZHCaHUk", titulo: "#45 - BABYMETAL METARAJI", duracion: "20:09", idioma: "Subtitles: English", fecha: "08 NOV 2025" },
+{ ep: 46, id: "3eF8RBSMxoI", titulo: "#46 - BABYMETAL METARAJI", duracion: "18:11", idioma: "Subtitles: English", fecha: "15 NOV 2025" },
+{ ep: 47, id: "HXXHVxpvdnI", titulo: "#47 - BABYMETAL METARAJI", duracion: "19:35", idioma: "Subtitles: English", fecha: "22 NOV 2025" },
+{ ep: 48, id: "rKEW66zOapY", titulo: "#48 - BABYMETAL METARAJI", duracion: "20:53", idioma: "Subtitles: English", fecha: "29 NOV 2025" },
+{ ep: 49, id: "yqULaFGWVTU", titulo: "#49 - BABYMETAL METARAJI", duracion: "20:31", idioma: "Subtitles: English", fecha: "06 DIC 2025" },
+{ ep: 50, id: "edASO1iDjKw", titulo: "#50 - BABYMETAL METARAJI", duracion: "19:19", idioma: "Subtitles: English", fecha: "13 DIC 2025" },
+{ ep: 51, id: "4Dh-0zZp538", titulo: "#51 - BABYMETAL METARAJI", duracion: "18:24", idioma: "Subtitles: English", fecha: "20 DIC 2025" },
+{ ep: 52, id: "aAMWBKvzqu0", titulo: "#52 - BABYMETAL METARAJI", duracion: "18:50", idioma: "Subtitles: English", fecha: "27 DIC 2025" },
+{ ep: 53, id: "fUbdL4Qs6Zk", titulo: "#53 - BABYMETAL METARAJI", duracion: "19:00", idioma: "Subtitles: English", fecha: "03 ENE 2026" },
+{ ep: 54, id: "Y_7BQVZqUls", titulo: "#54 - BABYMETAL METARAJI", duracion: "20:11", idioma: "Subtitles: English", fecha: "10 ENE 2026" },
+{ ep: 55, id: "TTxmugF5FyQ", titulo: "#55 - BABYMETAL METARAJI", duracion: "17:17", idioma: "Subtitles: English", fecha: "17 ENE 2026" },
+{ ep: 56, id: "yk9jPv8FxxM", titulo: "#56 - BABYMETAL METARAJI", duracion: "23:57", idioma: "Subtitles: English", fecha: "24 ENE 2026" },
+{ ep: 57, id: "30reMBtMQTg", titulo: "#57 - BABYMETAL METARAJI", duracion: "18:42", idioma: "Subtitles: English", fecha: "31 ENE 2026" },
+{ ep: 58, id: "TCXrfVGBy0E", titulo: "#58 - BABYMETAL METARAJI", duracion: "19:19", idioma: "Subtitles: English", fecha: "07 FEB 2026" },
+{ ep: 59, id: "VPSRjNhuauQ", titulo: "#59 - BABYMETAL METARAJI", duracion: "19:50", idioma: "Subtitles: English", fecha: "14 FEB 2026" },
+{ ep: 60, id: "UNebNLWUbYw", titulo: "#60 - BABYMETAL METARAJI", duracion: "19:44", idioma: "Subtitles: English", fecha: "21 FEB 2026" },
+{ ep: 61, id: "5SLYPBE8pRc", titulo: "#61 - BABYMETAL METARAJI", duracion: "19:09", idioma: "Subtitles: English", fecha: "28 FEB 2026" },
+{ ep: 62, id: "TQ4FHwo51Ps", titulo: "#62 - BABYMETAL METARAJI", duracion: "18:48", idioma: "Subtitles: English", fecha: "07 MAR 2026" },
+{ ep: 63, id: "YSvAGfrSt1U", titulo: "#63 - BABYMETAL METARAJI", duracion: "17:11", idioma: "Subtitles: English", fecha: "14 MAR 2026" },
+{ ep: 64, id: "-Gp3UQh1yO0", titulo: "#64 - BABYMETAL METARAJI", duracion: "19:29", idioma: "Subtitles: English", fecha: "21 MAR 2026" },
+{ ep: 65, id: "1BXzVn0f39Q", titulo: "#65 - BABYMETAL METARAJI FINAL EPISODE", duracion: "19:29", idioma: "Subtitles: English", fecha: "28 MAR 2026" }
+];
+
+        // ELEMENTOS DEL DOM
+        const contenedor = document.getElementById('episodios-container');
+        const epTitle = document.getElementById('current-ep-title');
+        const epTime = document.getElementById('current-ep-time');
+        const epLang = document.getElementById('current-sub-lang');
+        const epDate = document.getElementById('current-date');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const btnText = document.getElementById('btnText');
+        const btnIcon = document.getElementById('btnIcon');
+        const season1Btn = document.getElementById('season1Btn');
+        const season2Btn = document.getElementById('season2Btn');
+        const subInfoText = document.getElementById('sub-info');
+        const synopsisText = document.getElementById('synopsis-text');
+        const playText = document.getElementById('play-text');
+        const countEps = document.getElementById('count-eps');
+        const loadingState = {style:{display:'none'},innerHTML:''};
+
+        // VARIABLES
+        let temporadaActual = temporada1;
+        let listaVisible = false;
+        let player;
+
+        // ✅ INICIALIZACIÓN DEL REPRODUCTOR MEJORADO
+        function onYouTubeIframeAPIReady() {
+            const primerYoutube = temporadaActual.find(ep => ep.id);
+            player = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: primerYoutube ? primerYoutube.id : '',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 1,
+                    'rel': 0,
+                    'modestbranding': 1,
+                    'fs': 1,
+                    'iv_load_policy': 3,
+                    'cc_load_policy': 0
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            loadingState.style.display = 'none';
+            actualizarInfoVideo(temporadaActual[0]);
+        }
+
+        function onPlayerStateChange(event) {
+
+    if (event.data === YT.PlayerState.PLAYING) {
+        loadingState.style.display = 'none';
+    }
+
+    if (
+        event.data === YT.PlayerState.ENDED &&
+        episodioActivo
+    ) {
+
+        const indice = temporadaActual.findIndex(
+            ep => ep.ep === episodioActivo.ep
+        );
+
+        if (
+            indice !== -1 &&
+            indice < temporadaActual.length - 1
+        ) {
+
+            cargarVideo(
+                temporadaActual[indice + 1]
+            );
+
+        }
+
+    }
+
+}
+
+        function onPlayerError(event) {
+            loadingState.innerHTML = `
+                <div class="text-center text-red-400 p-4">
+                    <i class="fa fa-exclamation-triangle text-3xl mb-2"></i>
+                    <p>¡Video no disponible o privado!</p>
+                    <p class="text-xs text-crunchy-muted mt-1">ID: ${event.target.getVideoUrl().split('/embed/')[1]}</p>
+                </div>
+            `;
+        }
+        // ✅ CARGAR VIDEO CORREGIDO
+        function cargarVideo(episodio) {
+    const yt=document.getElementById("youtube-player");
+    const ext=document.getElementById("external-player");
+
+    if(episodio.external && episodio.embed){
+
+        // Detener YouTube completamente
+        if(player){
+            try{
+                player.stopVideo();
+            }catch(e){}
+        }
+        if(yt) yt.style.display="none";
+        if(ext){
+            ext.style.display="block";
+            ext.src=episodio.embed;
+        }
+        actualizarInfoVideo(episodio);
+        return;
+    }
+
+    if(ext){
+
+        // Detener YourUpload completamente
+        ext.src = "about:blank";
+
+        setTimeout(()=>{
+            ext.src = "";
+        },100);
+
+        ext.style.display="none";
+    }
+    if(yt) yt.style.display="block";
+
+    episodioActivo = episodio;
+
+    document
+    .querySelectorAll('.episodio-activo')
+    .forEach(el =>
+        el.classList.remove('episodio-activo')
+    );
+
+    if (player && episodio.id) {
+
+        loadingState.style.display = 'flex';
+
+        player.loadVideoById({
+            videoId: episodio.id,
+            suggestedQuality: 'hd720'
+        });
+
+        actualizarInfoVideo(episodio);
+
+        localStorage.setItem(
+            'metaraji_last',
+            JSON.stringify(episodio)
+        );
+
+        const tarjetaActual =
+        document.querySelector(
+            `[data-ep="${episodio.ep}"]`
+        );
+
+        if (tarjetaActual) {
+            tarjetaActual.classList.add(
+                'episodio-activo'
+            );
+        }
+
+    }
+
+}
+
+        function actualizarInfoVideo(ep) {
+            epTitle.textContent = ep.titulo;
+            epTime.textContent = ep.duracion;
+            epLang.textContent = ep.idioma;
+            epDate.textContent = ep.fecha;
+        }
+
+        // ✅ GENERAR LISTA
+        function generarLista() {
+            contenedor.innerHTML = '';
+            
+            temporadaActual.forEach(episodio => {
+                const tarjeta = document.createElement('div');
+                tarjeta.dataset.ep = episodio.ep;
+                tarjeta.className = "group bg-crunchy-card hover:bg-crunchy-hover rounded-lg overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl cursor-pointer border border-transparent hover:border-crunchy-orange/50";
+                tarjeta.dataset.ep = episodio.ep;
+
+                tarjeta.innerHTML = `
+                    <div class="relative">
+                        <img src="${episodio.id ? 'https://img.youtube.com/vi/' + episodio.id + '/mqdefault.jpg' : 'https://i.ibb.co/zT5BR8j1/images-2026-06-04-T163713-663.jpg'}" alt="${episodio.titulo}" class="w-full h-[170px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fa fa-play-circle text-5xl text-white/90 drop-shadow-lg"></i>
+                        </div>
+                        <span class="absolute top-2 left-2 bg-crunchy-orange/90 px-2 py-1 text-sm font-bold rounded">#${episodio.ep}</span>
+                        <span class="absolute bottom-2 left-2 bg-black/80 px-1.5 py-0.5 text-xs rounded">${episodio.fecha}</span>
+                        <span class="absolute bottom-2 right-2 bg-black/80 px-1.5 py-0.5 text-xs rounded">${episodio.duracion}</span>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-semibold mb-1 group-hover:text-crunchy-orange transition line-clamp-2 text-sm">${episodio.titulo}</h3>
+                    </div>
+                `;
+
+                tarjeta.addEventListener('click', () => cargarVideo(episodio));
+                contenedor.appendChild(tarjeta);
+            });
+        }
+
+        // ✅ CAMBIAR TEMPORADA
+        season1Btn.addEventListener('click', () => {
+            temporadaActual = temporada1;
+            season1Btn.classList.add('season-active', 'border-crunchy-orange');
+            season1Btn.classList.remove('bg-crunchy-card', 'hover:bg-crunchy-hover', 'border-gray-700');
+            season2Btn.classList.remove('season-active', 'border-crunchy-orange');
+            season2Btn.classList.add('bg-crunchy-card', 'hover:bg-crunchy-hover', 'border-gray-700');
+            
+            subInfoText.textContent = "Subtítulos en Español";
+            synopsisText.innerHTML = 'Programa oficial de radio y contenido de BABYMETAL. Disfruta de todas las charlas, noticias y momentos especiales. Actualmente visualizando: <b>Temporada 1 - Subtítulos en Español</b>.';
+            playText.textContent = "Reproducir E#1";
+            countEps.textContent = `(${temporadaActual.length} Episodios)`;
+            
+            generarLista();
+            if(temporadaActual.length > 0) cargarVideo(temporadaActual[0]);
+        });
+
+        season2Btn.addEventListener('click', () => {
+            temporadaActual = temporada2;
+            season2Btn.classList.add('season-active', 'border-crunchy-orange');
+            season2Btn.classList.remove('bg-crunchy-card', 'hover:bg-crunchy-hover', 'border-gray-700');
+            season1Btn.classList.remove('season-active', 'border-crunchy-orange');
+            season1Btn.classList.add('bg-crunchy-card', 'hover:bg-crunchy-hover', 'border-gray-700');
+            
+            subInfoText.textContent = "Subtítulos en Inglés";
+            synopsisText.innerHTML = 'Programa oficial de radio y contenido de BABYMETAL. Enjoy all talks, news and special moments. Currently viewing: <b>Season 2 - English Subtitles</b>.';
+            playText.textContent = "Play E#1";
+            countEps.textContent = `(${temporadaActual.length} Episodios)`;
+            
+            generarLista();
+            if(temporadaActual.length > 0) cargarVideo(temporadaActual[0]);
+        });
+
+        // ✅ MOSTRAR / OCULTAR LISTA
+        toggleBtn.addEventListener('click', () => {
+            listaVisible = !listaVisible;
+            if(listaVisible){
+                contenedor.style.maxHeight='none';
+                contenedor.style.overflow='visible';
+                contenedor.classList.remove('max-h-0', 'opacity-0');
+                contenedor.classList.add('opacity-100');
+                btnText.textContent = "Ocultar Lista";
+                btnIcon.classList.remove('fa-chevron-down');
+                btnIcon.classList.add('fa-chevron-up');
+            } else {
+                contenedor.style.maxHeight='0px';
+                contenedor.style.overflow='hidden';
+                contenedor.classList.remove('opacity-100');
+                contenedor.classList.add('max-h-0', 'opacity-0');
+                btnText.textContent = "Ver Lista";
+                btnIcon.classList.remove('fa-chevron-up');
+                btnIcon.classList.add('fa-chevron-down');
+            }
+        });
+
+        // ✅ INICIALIZACIÓN
+        
+// V4 mejoras
+let episodioActivo = null;
+
+const ultimoGuardado =
+    localStorage.getItem('metaraji_last');
+
+if (ultimoGuardado) {
+
+    try {
+
+        episodioActivo =
+            JSON.parse(ultimoGuardado);
+
+    } catch(e){}
+
+}
+function guardarProgreso(ep){localStorage.setItem('metaraji_last',JSON.stringify(ep));}
+const cargarVideoOriginal=cargarVideo;
+cargarVideo=function(ep){
+ episodioActivo=ep;
+document
+.querySelectorAll('.episodio-activo')
+.forEach(el=>el.classList.remove('episodio-activo'));
+ guardarProgreso(ep);
+ cargarVideoOriginal(ep);
+};
+document.addEventListener('DOMContentLoaded',()=>{
+ const buscador=document.createElement('input');
+ buscador.placeholder='Buscar episodio...';
+ buscador.className='w-full md:w-80 px-4 py-2 rounded bg-crunchy-card border border-gray-700 mb-4';
+ const cont=document.getElementById('episodios-container');
+ if(cont && cont.parentNode) cont.parentNode.insertBefore(buscador,cont);
+ buscador.addEventListener('input',e=>{
+  const t=e.target.value.toLowerCase();
+  [...cont.children].forEach(c=>c.style.display=c.innerText.toLowerCase().includes(t)?'':'none');
+ });
+});
+
+document.getElementById('playBtn')
+?.addEventListener('click', () => {
+
+    if (temporadaActual.length > 0) {
+        cargarVideo(temporadaActual[0]);
+    }
+
+});
+document.getElementById('continueBtn')
+?.addEventListener('click', () => {
+
+    const ultimo =
+        localStorage.getItem('metaraji_last');
+
+    if (ultimo) {
+
+        try {
+
+            cargarVideo(
+                JSON.parse(ultimo)
+            );
+
+        } catch(e){}
+
+    }
+
+});
+
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+    const primerEpisodio = temporadaActual[0];
+
+    if(primerEpisodio && primerEpisodio.external){
+        document.getElementById('youtube-player').style.display='none';
+        document.getElementById('external-player').style.display='block';
+        document.getElementById('external-player').src=primerEpisodio.embed;
+        actualizarInfoVideo(primerEpisodio);
+    }
+
+});
+
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+        generarLista();
+    </script>
+<button id="goPlayerBtn" title="Ir al reproductor">
+    🎬
+</button>
+
+<style>
+#goPlayerBtn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+background:#F47521;
+color:#fff;
+font-size:28px;
+cursor:pointer;
+z-index:9999;
+box-shadow:0 4px 15px rgba(0,0,0,.4);
+}
+</style>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    const btn = document.getElementById('goPlayerBtn');
+
+    if (!btn) return;
+
+    btn.onclick = function() {
+
+        const destino =
+            document.getElementById('playerSection') ||
+            document.querySelector('.aspect-video-custom') ||
+            document.getElementById('youtube-player') ||
+            document.getElementById('external-player');
+
+        if (destino) {
+            destino.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    };
+
+});
+</script>
+
+
+<script>
+if (!window.__metarajiBackFix) {
+    window.__metarajiBackFix = true;
+
+    history.pushState({metaraji:true}, "", location.href);
+
+    window.addEventListener("popstate", function() {
+        if (document.referrer && document.referrer !== location.href) {
+            location.href = document.referrer;
+        } else {
+            history.go(-1);
+        }
+    });
+}
+</script>
+
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const banner = document.getElementById('playerHintBanner');
+    if(!banner) return;
+
+    setTimeout(() => {
+        banner.style.top = '20px';
+    }, 200);
+
+    setTimeout(() => {
+        banner.style.top = '-240px';
+        banner.style.opacity = '0';
+
+        setTimeout(() => {
+            if (banner.parentNode) banner.remove();
+        }, 800);
+    }, 6000);
+
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+    const continueBtn = document.getElementById('continueBtn');
+    if(!continueBtn) return;
+
+    continueBtn.onclick = function(){
+
+        const ultimo = localStorage.getItem('metaraji_last');
+        if(!ultimo) return;
+
+        try{
+            const episodio = JSON.parse(ultimo);
+
+            if(typeof cargarVideo === 'function'){
+                cargarVideo(episodio);
+
+                const destino =
+                    document.getElementById('youtube-player') ||
+                    document.getElementById('external-player');
+
+                if(destino){
+                    destino.scrollIntoView({
+                        behavior:'smooth',
+                        block:'start'
+                    });
+                }
+            }
+        }catch(e){
+            console.error(e);
+        }
+    };
+
+});
+</script>
+
+</body>
+</html>
